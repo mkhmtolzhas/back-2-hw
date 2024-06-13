@@ -15,7 +15,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://back-2-qxiy18f0a-mkhmtcores-projects.vercel.app/'
+    origin: 'http://localhost:3001/'
   }
 })
 

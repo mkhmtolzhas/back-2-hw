@@ -13,7 +13,7 @@ interface ChatPageProps {
 }
 
 
-let socket = io("https://back-2-hw.onrender.com");
+let socket = io("http://localhost:3000/");
 
 export function ChatPage({ id }: ChatPageProps) {
   const [messages, setMessages] = useState<any[]>([]);
@@ -21,7 +21,7 @@ export function ChatPage({ id }: ChatPageProps) {
   const [parterTyping, setPartnerTyping] = useState(false);
 
   const fetchMessages = async () => {
-    const res = await fetch(`https://back-2-hw.onrender.com/api/v1/chats/${id}`);
+    const res = await fetch(`http://localhost:3000/api/v1/chats/${id}`);
     const data = await res.json();
     setMessages(data.messages);
   };
@@ -33,7 +33,7 @@ export function ChatPage({ id }: ChatPageProps) {
 
   useEffect(() => {
     console.log(id)
-    socket = io("https://back-2-hw.onrender.com");
+    socket = io("http://localhost:3000/");
 
     socket.on("connect", () => {
       console.log("connected");
@@ -77,7 +77,7 @@ export function ChatPage({ id }: ChatPageProps) {
     if (message.trim() === "") return;
 
 
-    const response = fetch(`https://back-2-hw.onrender.com/api/v1/chats/${id}/sendText`, {
+    const response = fetch(`http://localhost:3000/api/v1/chats/${id}/sendText`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
